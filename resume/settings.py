@@ -24,7 +24,7 @@ SECRET_KEY = "k&0{PbO=r9~|_,#p!hK?ea@W!*RInM"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['muxresume.herokuapp.com']
+ALLOWED_HOSTS = ['muxresume.herokuapp.com','127.0.0.1']
 
 
 # Application definition
