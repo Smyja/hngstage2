@@ -21,7 +21,7 @@ def home(request):
             print(form)
             form.save()
             subject = 'Hng backend task'
-            message = f'Hello {usernayme}'
+            message = f'This is an autorespond email.Don't fret.'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [usernayme]
             send_mail( subject, message, email_from, recipient_list )
