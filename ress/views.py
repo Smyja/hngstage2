@@ -20,7 +20,7 @@ def home(request):
         if form.is_valid(): 
             print(form)
             form.save()
-            subject = 'This email is a test email for the hng backend task'
+            subject = 'Hng backend task'
             message = f'Hello {usernayme}'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [usernayme]
