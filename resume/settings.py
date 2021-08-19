@@ -10,7 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-import django_heroku
+import sys
+import environ #pylint: disable=E0401
+from pathlib import Path
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+import django_heroku #pylint: disable=E0401
 
 
 from pathlib import Path
@@ -23,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "k&0{PbO=r9~|_,#p!hK?ea@W!*RInM"
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -119,14 +128,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'server51.web-hosting.com'
-EMAIL_HOST_USER="maro@oleaf.co"
-EMAIL_HOST_PASSWORD="spmpKjD)BkUb"
-EMAIL_PORT=465
-DEFAULT_FROM_EMAIL = 'HNG Test mail'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_USE_SSL = True
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'HNG STAGE 2 TASK'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
