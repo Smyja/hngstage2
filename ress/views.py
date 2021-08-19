@@ -7,12 +7,25 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import ContactForm
 from .models import Contact
+from django.conf import settings
+from django.core.mail import send_mail
+
+
+
 def home(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        usernayme = request.POST.get('email')
+
         if form.is_valid(): 
             print(form)
             form.save()
+            subject = 'This email is a test email for the hng backend task'
+            message = f'Hello {usernayme}'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [usernayme]
+            send_mail( subject, message, email_from, recipient_list )
+
             messages.success(request,"This email has been sent")
             
     
